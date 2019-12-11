@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import './App.css'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import loginService from './services/login'
 import blogService from './services/blogs'
 import AddForm from './components/AddForm'
+import Notification from './components/Notification'
 const baseUrl = '/api/login'
 
 const App = () => {
@@ -16,7 +18,6 @@ const App = () => {
   const [url, setUrl] = useState('') 
   const [likes, setLikes] = useState('') 
   const [ message, setMessage ] = useState(null)
-  const [errorMessage, setErrorMessage] = useState(null)
 
   useEffect(() => {
     blogService
@@ -52,10 +53,13 @@ const App = () => {
       setUsername('')
       setPassword('')
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
+      setMessage(
+        {content:`Wrong username or password!`, type: 'error'}
+      )
+
       setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+        setMessage(null)
+      }, 3000)
     }
   }
 
@@ -88,7 +92,7 @@ const App = () => {
         setLikes('')
 
         setMessage(
-          {content: `Added ${title.trim()}`, type: 'success'}
+          {content: `A new blog ${title.trim()} added`, type: 'success'}
         )
 
         setTimeout(() => {
@@ -98,10 +102,10 @@ const App = () => {
 
       
     } catch (exception) {
-      setErrorMessage('Wrong credentials')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+      // setErrorMessage('Wrong credentials')
+      // setTimeout(() => {
+      //   setErrorMessage(null)
+      // }, 5000)
     }
 
   }
@@ -170,6 +174,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Notification message={message} />
       {user === null ?
         loginForm() :
         blogList()
