@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import axios from 'axios'
 import loginService from './services/login'
 import blogService from './services/blogs'
+import Togglable from './components/Togglable'
 import AddForm from './components/AddForm'
 import LoginForm from './components/LoginForm'
 import UserStatus from './components/UserStatus'
@@ -123,13 +124,15 @@ const App = () => {
         /> :
         <div>
           <UserStatus name={user.name} handleLogout={handleLogout} />
-          <AddForm 
-            handleAdd={handleAdd} 
-            title={title} setTitle={setTitle}
-            author={author} setAuthor={setAuthor}
-            url={url} setUrl={setUrl}
-            likes={likes} setLikes={setLikes}
-          />
+          <Togglable buttonLabel='Add new'>
+            <AddForm 
+              handleAdd={handleAdd} 
+              title={title} setTitle={setTitle}
+              author={author} setAuthor={setAuthor}
+              url={url} setUrl={setUrl}
+              likes={likes} setLikes={setLikes}
+            />
+          </Togglable>
           <BlogList blogs={blogs} />
         </div>
       }
