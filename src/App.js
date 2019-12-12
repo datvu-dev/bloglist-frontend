@@ -7,6 +7,7 @@ import blogService from './services/blogs'
 import AddForm from './components/AddForm'
 import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
+import BlogList from './components/BlogList'
 const baseUrl = '/api/login'
 
 const App = () => {
@@ -30,7 +31,6 @@ const App = () => {
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedBlogappUser')
     if (loggedUserJSON) {
-      console.log(loggedUserJSON)
       const user = JSON.parse(loggedUserJSON)
       setUser(user)
       blogService.setToken(user.token)
@@ -108,43 +108,8 @@ const App = () => {
       //   setErrorMessage(null)
       // }, 5000)
     }
+}
 
-  }
-
-  
-
-  const Blogs = () => {
-    const blogRows = () => blogs.map(blog =>
-      <p>{blog.title} ({blog.author})</p>
-    )
-
-    return (
-      <div>
-        {blogRows()}
-      </div>  
-    )
-  }
-
-  const blogList = () => {
-    return(
-      <div>
-        <header className="App-header">
-          <h1>Blogs</h1>
-        </header>
-        <div>
-          <p>{user.name} logged in <button type="submit" onClick={handleLogout}>logout</button></p>
-        </div>
-        <AddForm 
-          handleAdd={handleAdd} 
-          title={title} setTitle={setTitle}
-          author={author} setAuthor={setAuthor}
-          url={url} setUrl={setUrl}
-          likes={likes} setLikes={setLikes}
-        />
-        {Blogs()}
-      </div>
-    )
-  }
 
   return (
     <div className="App">
@@ -155,7 +120,19 @@ const App = () => {
           username={username} setUsername={setUsername}
           password={password} setPassword={setPassword}
         /> :
-        blogList()
+        <div>
+          <div>
+            <p>{username} logged in <button type="submit" onClick={handleLogout}>logout</button></p>
+          </div>
+          <AddForm 
+            handleAdd={handleAdd} 
+            title={title} setTitle={setTitle}
+            author={author} setAuthor={setAuthor}
+            url={url} setUrl={setUrl}
+            likes={likes} setLikes={setLikes}
+          />
+          <BlogList blogs={blogs} />
+        </div>
       }
     </div>
   );
