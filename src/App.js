@@ -6,6 +6,7 @@ import loginService from './services/login'
 import blogService from './services/blogs'
 import AddForm from './components/AddForm'
 import LoginForm from './components/LoginForm'
+import UserStatus from './components/UserStatus'
 import Notification from './components/Notification'
 import BlogList from './components/BlogList'
 const baseUrl = '/api/login'
@@ -121,9 +122,7 @@ const App = () => {
           password={password} setPassword={setPassword}
         /> :
         <div>
-          <div>
-            <p>{username} logged in <button type="submit" onClick={handleLogout}>logout</button></p>
-          </div>
+          <UserStatus name={user.name} handleLogout={handleLogout} />
           <AddForm 
             handleAdd={handleAdd} 
             title={title} setTitle={setTitle}
