@@ -5,6 +5,7 @@ import axios from 'axios'
 import loginService from './services/login'
 import blogService from './services/blogs'
 import AddForm from './components/AddForm'
+import LoginForm from './components/LoginForm'
 import Notification from './components/Notification'
 const baseUrl = '/api/login'
 
@@ -110,34 +111,7 @@ const App = () => {
 
   }
 
-  const loginForm = () => (
-    <div>
-      <header className="App-header">
-        <h1>Login to application</h1>
-      </header>
-      <form onSubmit={handleLogin}>
-        <div>
-          username
-            <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
-        </div>
-        <div>
-          password
-            <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
-        </div>
-        <button type="submit">login</button>
-      </form>    
-    </div>  
-  )
+  
 
   const Blogs = () => {
     const blogRows = () => blogs.map(blog =>
@@ -176,7 +150,11 @@ const App = () => {
     <div className="App">
       <Notification message={message} />
       {user === null ?
-        loginForm() :
+        <LoginForm
+          handleLogin={handleLogin}
+          username={username} setUsername={setUsername}
+          password={password} setPassword={setPassword}
+        /> :
         blogList()
       }
     </div>
