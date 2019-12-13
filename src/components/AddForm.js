@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const AddForm = (props) => {
     return (
@@ -44,6 +45,18 @@ const AddForm = (props) => {
         </form>    
       </div>  
     )
+}
+
+AddForm.propTypes = {
+    handleAdd: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    setTitle: PropTypes.func.isRequired,
+    author: PropTypes.string.isRequired,
+    setAuthor: PropTypes.func.isRequired,
+    url: PropTypes.string.isRequired,
+    setUrl: PropTypes.func.isRequired,
+    likes: PropTypes.string.isRequired,
+    setLikes: PropTypes.func.isRequired
 }
 
 export default AddForm

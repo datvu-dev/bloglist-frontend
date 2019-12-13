@@ -1,5 +1,6 @@
 import React from 'react'
 import Blog from './Blog'
+import PropTypes from 'prop-types'
 
 const BlogList = (props) => {
     const blogRows = () => props.blogs.map( (blog , index) =>
@@ -12,6 +13,10 @@ const BlogList = (props) => {
             {blogRows()}
         </div>
     )
+}
+
+BlogList.propTypes = {
+    blogs: PropTypes.array.isRequired
 }
 
 export default BlogList
