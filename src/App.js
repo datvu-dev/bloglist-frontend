@@ -110,8 +110,36 @@ const App = () => {
       //   setErrorMessage(null)
       // }, 5000)
     }
-}
+  }
 
+  const handleLike = async => (blogObj) => (event) => {
+    event.preventDefault()
+    blogObj.likes = blogObj.likes + 1
+
+    try {
+      blogService.update(
+        blogObj
+      )
+      .then(response => {
+        setBlogs(blogs.map(blog => blog.id !== blogObj.id ? blog : response))
+
+        setMessage(
+          {content: `Blog ${blogObj.title.trim()} updated`, type: 'success'}
+        )
+
+        setTimeout(() => {
+          setMessage(null)
+        }, 4000)
+      })
+
+      
+    } catch (exception) {
+    //   // setErrorMessage('Wrong credentials')
+    //   // setTimeout(() => {
+    //   //   setErrorMessage(null)
+    //   // }, 5000)
+    }
+  }
 
   return (
     <div className="App">
@@ -133,7 +161,7 @@ const App = () => {
               likes={likes} setLikes={setLikes}
             />
           </Togglable>
-          <BlogList blogs={blogs} />
+          <BlogList blogs={blogs} handleLike={handleLike()}/>
         </div>
       }
     </div>

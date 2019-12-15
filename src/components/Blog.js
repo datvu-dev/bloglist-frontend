@@ -2,8 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Blog = (props) => (
-  <div>
-    <p>{props.title} ({props.author})</p>
+  <div className="blog">
+    <p>{props.title} ({props.author}, {props.likes} likes) <button onClick={props.handleLike}>like</button></p>
   </div>
 )
 

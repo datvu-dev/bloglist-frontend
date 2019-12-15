@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 const BlogList = (props) => {
     const blogRows = () => props.blogs.map( (blog , index) =>
-        <Blog key={index} title={blog.title} author={blog.author} />
+        <Blog key={index} title={blog.title} author={blog.author} likes={blog.likes} handleLike={props.handleLike(blog)} />
     )
 
     return(
