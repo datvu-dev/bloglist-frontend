@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
-import ReactDOM from 'react-dom'
-import axios from 'axios'
 import loginService from './services/login'
 import blogService from './services/blogs'
 import Togglable from './components/Togglable'
@@ -10,7 +8,6 @@ import LoginForm from './components/LoginForm'
 import UserStatus from './components/UserStatus'
 import Notification from './components/Notification'
 import BlogList from './components/BlogList'
-const baseUrl = '/api/login'
 
 const App = () => {
   const [blogs, setBlogs] = useState([]) 
