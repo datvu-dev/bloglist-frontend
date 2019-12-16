@@ -12,8 +12,8 @@ const Blog = (props) => {
 
   return (
     <div className="blog">
-      <p onClick={() => toggleVisibility()}><b>{props.content.title}</b> ( {props.content.author} )</p>
-      <div style={showWhenVisible}>
+      <p className="title" onClick={() => toggleVisibility()}><b>{props.content.title}</b> ( {props.content.author} )</p>
+      <div className="additional-info" style={showWhenVisible}>
         <p><a href={props.content.url}>{props.content.url}</a></p>
         <p>{props.content.likes} likes <button onClick={props.handleLike}>Like</button></p>
       </div>
