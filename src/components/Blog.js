@@ -12,17 +12,21 @@ const Blog = (props) => {
 
   return (
     <div className="blog">
-      <p className="title" onClick={() => toggleVisibility()}><b>{props.content.title}</b> ( {props.content.author} )</p>
+      <p className="title" onClick={() => toggleVisibility()}><b>{props.title}</b> ( {props.author} )</p>
       <div className="additional-info" style={showWhenVisible}>
-        <p><a href={props.content.url}>{props.content.url}</a></p>
-        <p>{props.content.likes} likes <button onClick={props.handleLike}>Like</button></p>
+        <p><a href={props.url}>{props.url}</a></p>
+        <p>{props.likes} likes <button onClick={props.handleLike}>Like</button></p>
       </div>
     </div>
   )
 }
 
 Blog.propTypes = {
-    content: PropTypes.object.isRequired
+    title: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    likes: PropTypes.number.isRequired,
+    handleLike: PropTypes.func.isRequired
 }
 
 export default Blog
