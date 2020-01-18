@@ -1,10 +1,13 @@
 import React from 'react'
 import Blog from './Blog'
+import Accordion from './Accordion'
 import PropTypes from 'prop-types'
 
 const BlogList = (props) => {
     const blogRows = () => props.blogs.map( (blog , index) =>
-        <Blog key={index} {...blog} handleLike={props.handleLike(blog)} />
+        <Accordion>
+            <Blog key={index} {...blog} handleLike={props.handleLike(blog)} />
+        </Accordion>
     )
 
     return(
